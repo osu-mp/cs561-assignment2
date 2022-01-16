@@ -26,12 +26,30 @@ public class MyLibrary {
                 completion(nil)
 
             case let .success(temperature):
+                print("Temperature from weather service: ", temperature)
                 if self.contains(temperature, "8") {
                     completion(true)
                 } else {
                     let isLuckyNumber = self.contains(temperature, "8")
                     completion(isLuckyNumber)
                 }
+            }
+        }
+    }
+
+    public func getTemp(completion: @escaping (Int?) -> Void) {
+        /*
+         Interface to weather service, return an int of the current temperature
+         */
+        weatherService.getTemperature { response in
+            switch response {
+            case let .failure(error):
+                print(error)
+                completion(nil)
+
+            case let .success(temperature):
+                print("Temperature from weather service: ", temperature)
+                completion(temperature)
             }
         }
     }

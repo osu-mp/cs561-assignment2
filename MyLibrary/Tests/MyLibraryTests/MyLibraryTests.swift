@@ -101,7 +101,11 @@ final class MyLibraryTests: XCTestCase {
         XCTAssertNil(isLuckyNumber)
     }
 
-    func testRealWeatherService() throws {
+    func testLocalhostWeatherService() throws {
+        /*
+         Narrow integration test that connects to mock weather service running on localhost
+
+         */
         // Given
         //let mockWeatherService = MockWeatherService(
         //        shouldSucceed: true,
@@ -110,7 +114,7 @@ final class MyLibraryTests: XCTestCase {
 
         let myLibrary = MyLibrary()
         let number = 7
-        let expectation = XCTestExpectation(description: "We asked about the number 8 and heard back 🎄")
+        let expectation = XCTestExpectation(description: "We asked about the number 7 and heard back 🎄")
         var isLuckyNumber: Bool?
 
         // When
@@ -126,33 +130,26 @@ final class MyLibraryTests: XCTestCase {
         XCTAssert(isLuckyNumber == false)
     }
 
-    /*
-    func testealWeatherService() throws {
-
-            // Given
-         //   let mockWeatherService = Wea(
-          //      shouldSucceed: true,
-           //     shouldReturnTemperatureWithAnEight: true
-            //)
-            let weatherService = WeatherServiceImpl()//.getTemperature(completion: completion(nil))
-            let temp = weatherService.getTemperature(completion:{
-                expectation.fulfill()
-            })
-
-            waitForExpectations(timeout: 5, handler: nil)
-
-            // When
+    func testGetTemp() throws {
         /*
-            myLibrary.isLucky(number, completion: { lucky in
-                isLuckyNumber = lucky
-                expectation.fulfill()
-            })
+         Narrow integration test using getTemp function of MyLibrary to return current temperature
+         The URL is currently hardcoded in WeatherServices to point to the localhost
+         An instance of apimocker needs to be running, the config json for that hard codes the
+         current temperature at 43 degrees
+         */
+        // Given
+        let myLibrary = MyLibrary()
+        let expectation = XCTestExpectation(description: "We asked about the number 7 and heard back 🎄")
+        var temperature: Int?
 
-            wait(for: [expectation], timeout: 5)
-*/
-            // Then
-            //XCTAssertNotNil(isLuckyNumber)
-            XCTAssert(temp == 12.34)
+        // When
+        myLibrary.getTemp(completion: { temp in
+            temperature = temp
+            expectation.fulfill()
+        })
+        wait(for: [expectation], timeout: 5)
 
-        }*/
+        // Then
+        XCTAssert(temperature == 43)
+    }
 }
