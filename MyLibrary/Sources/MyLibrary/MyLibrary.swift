@@ -1,3 +1,4 @@
+
 public class MyLibrary {
     private let weatherService: WeatherService
 
@@ -12,8 +13,8 @@ public class MyLibrary {
     public func isLucky(_ number: Int, completion: @escaping (Bool?) -> Void) {
         // Check the simple case first: 3, 5 and 8 are automatically lucky.
         if number == 3 || number == 5 || number == 8 {
-            completion(true)
-            return
+            return completion(true)
+            //return
         }
 
         // Fetch the current weather from the backend.

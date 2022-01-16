@@ -101,4 +101,58 @@ final class MyLibraryTests: XCTestCase {
         XCTAssertNil(isLuckyNumber)
     }
 
+    func testRealWeatherService() throws {
+        // Given
+        //let mockWeatherService = MockWeatherService(
+        //        shouldSucceed: true,
+        //        shouldReturnTemperatureWithAnEight: false
+        //)
+
+        let myLibrary = MyLibrary()
+        let number = 7
+        let expectation = XCTestExpectation(description: "We asked about the number 8 and heard back 🎄")
+        var isLuckyNumber: Bool?
+
+        // When
+        myLibrary.isLucky(number, completion: { lucky in
+            isLuckyNumber = lucky
+            expectation.fulfill()
+        })
+
+        wait(for: [expectation], timeout: 5)
+
+        // Then
+        XCTAssertNotNil(isLuckyNumber)
+        XCTAssert(isLuckyNumber == false)
+    }
+
+    /*
+    func testealWeatherService() throws {
+
+            // Given
+         //   let mockWeatherService = Wea(
+          //      shouldSucceed: true,
+           //     shouldReturnTemperatureWithAnEight: true
+            //)
+            let weatherService = WeatherServiceImpl()//.getTemperature(completion: completion(nil))
+            let temp = weatherService.getTemperature(completion:{
+                expectation.fulfill()
+            })
+
+            waitForExpectations(timeout: 5, handler: nil)
+
+            // When
+        /*
+            myLibrary.isLucky(number, completion: { lucky in
+                isLuckyNumber = lucky
+                expectation.fulfill()
+            })
+
+            wait(for: [expectation], timeout: 5)
+*/
+            // Then
+            //XCTAssertNotNil(isLuckyNumber)
+            XCTAssert(temp == 12.34)
+
+        }*/
 }
