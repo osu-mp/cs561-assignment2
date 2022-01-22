@@ -150,6 +150,6 @@ final class MyLibraryTests: XCTestCase {
         wait(for: [expectation], timeout: 5)
 
         // Then
-        XCTAssert(temperature == 43)
+        XCTAssert(temperature == 45)
     }
 }

@@ -6,8 +6,9 @@ public protocol WeatherService {
 
 public class WeatherServiceImpl: WeatherService {
     //let url = "https://localhost:7878/data/2.5/weather/"
-    let url = "http://10.6.1.149:7878/data/2.5/weather/"
+    //let url = "http://10.6.1.149:7878/data/2.5/weather/"
     //let url = "https://api.openweathermap.org/data/2.5/weather?q=Corvallis,US&appid=ab6cdb14a4408ca29f5d2ae96e32058c&units=imperial"
+    let url = "http://localhost:3000/data/2.5/weather/"
 
     public init(){
     }
